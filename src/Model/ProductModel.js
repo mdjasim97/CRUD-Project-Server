@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const DataSchema = mongoose.Schema({
+const DataSchema = new mongoose.Schema({
     ProductName: { type: String },
     ProductCode: { type: String },
     Img: { type: String },
@@ -14,4 +14,4 @@ const DataSchema = mongoose.Schema({
 
 
 const productModel = mongoose.model('products', DataSchema)
-export default productModel
+module.exports = productModel

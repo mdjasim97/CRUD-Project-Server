@@ -12,7 +12,6 @@ const cors = require('cors')
 const helmet = require('helmet')
 const rateLimiter = require('express-rate-limit')
 const hpp = require('hpp')
-const xssClean = require('xss-clean')
 const mongoSanitize = require('express-mongo-sanitize')
 
 
@@ -37,7 +36,6 @@ const limiter = rateLimiter({
 app.use(cors(corsOptions))
 app.use(helmet())
 app.use(hpp())
-app.use(xssClean())
 app.use(mongoSanitize())
 app.use(limiter)
 
@@ -56,6 +54,13 @@ connectDb()
 
 // manage application backend route
 app.use('/', router)
+
+
+
+// Undefined route
+app.use('*', (req, res) => {
+    res.send('Undefined route')
+})
 
 
 // application configuration file export 
